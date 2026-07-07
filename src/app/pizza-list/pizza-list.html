@@ -1,0 +1,25 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Estado</th>
+            <th>Compra</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pizza of pizzas" [ngClass]="{ 'featured': pizza.featured }">
+            <td><img class="pizza-img" [src]="pizza.img.startsWith('http') ? pizza.img : (pizza.img.startsWith('/src') ? pizza.img.replace('/src', '') : '/img/' + pizza.img)" [alt]="pizza.name"></td>
+            <td>{{ pizza.name }}</td>
+            <td>{{ pizza.price | currency }}</td>
+            <td>
+                <span class="badge text-bg-danger" *ngIf="pizza.stock==0">Sin stock</span>
+                <span class="badge text-bg-warning ms-1" *ngIf="pizza.featured">Destacada</span>
+            </td>
+            <td><app-input-integer [(quantity)]="pizza.quantity" [max]="pizza.stock" *ngIf="pizza.stock" (maxReached)="maxReached($event)"></app-input-integer></td>
+            <td><button class="btn btn-primary" (click)="addToCart(pizza)" [disabled]="pizza.quantity <= 0">Comprar</button></td>
+        </tr>
+    </tbody>
+</table>
+ 
