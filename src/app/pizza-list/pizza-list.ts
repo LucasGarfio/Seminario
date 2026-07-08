@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { Pizza } from './Pizza';
 import { InputInteger } from "../input-integer/input-integer";
 import { PizzaCart } from '../pizza-cart';
-import { Cart } from "../cart/cart";
 import { PizzaData } from '../pizza-data';
 
 @Component({
