@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Pizza } from './Pizza';
@@ -16,7 +16,7 @@ import { PizzaData } from '../pizza-data';
 export class PizzaList {
 
 
-pizzas: Pizza[] = [];
+pizzas = signal<Pizza[]>([]);
 
 constructor(
   private cart: PizzaCart,
@@ -24,9 +24,12 @@ constructor(
    
 }
 
-ngOnInit(): void {
+  ngOnInit(): void {
+  // reset cart when entering the pizza list (home)
+  this.cart.clear();
+
   this.PizzaData.getAll()
-  .subscribe(pizzas => this.pizzas = pizzas);  
+  .subscribe(pizzas => this.pizzas.set(pizzas));  
   }
 
 addToCart(pizza: Pizza): void {

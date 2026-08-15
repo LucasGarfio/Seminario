@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './about.html',
-  styleUrl: './about.scss',
+  styleUrls: ['./about.scss'],
 })
-export class About {}
+export class About {
+  onSubmit(): void {
+    alert('Formulario enviado');
+  }
+}

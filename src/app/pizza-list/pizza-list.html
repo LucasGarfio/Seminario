@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pizza of pizzas" [ngClass]="{ 'featured': pizza.featured }">
+        <tr *ngFor="let pizza of pizzas()" [ngClass]="{ 'featured': pizza.featured }">
             <td><img class="pizza-img" [src]="pizza.img.startsWith('http') ? pizza.img : (pizza.img.startsWith('/src') ? pizza.img.replace('/src', '') : '/img/' + pizza.img)" [alt]="pizza.name"></td>
             <td>{{ pizza.name }}</td>
             <td>{{ pizza.price | currency }}</td>

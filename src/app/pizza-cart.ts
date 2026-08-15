@@ -22,4 +22,9 @@ export class PizzaCart {
     this.cartList.next(this._cartList);
     return true;
   }
+
+  clear(): void {
+    this._cartList = [];
+    this.cartList.next(this._cartList);
+  }
 }
